@@ -1,17 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SportInfo</title>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="https://www.thesportsdb.com/images/media/logo.png">
 </head>
-<body>
-    <main>
-        <header></header>
-        <nav></nav>
-        <section></section>
-        <footer></footer>
-    </main>
-    
+
+<body class="bg-black text-white">
+
+    <!-- HERO SECTION tipo Netflix -->
+    <section id="fondo" class="relative h-screen bg-cover bg-center">
+        <div class="overlay absolute inset-0 z-10"></div>
+
+        <!-- Navbar -->
+        <header class="absolute top-0 left-0 w-full z-20 flex justify-between items-center px-6 py-4">
+            <h1 class="text-3xl font-extrabold text-red-600">SportInfo</h1>
+            <nav class="space-x-4">
+                <a href="#" class="hover:text-red-400">Inicio</a>
+                <a href="#" class="hover:text-red-400">Ligas</a>
+                <a href="#" class="hover:text-red-400">Buscar</a>
+                <a href="#" class="bg-red-600 hover:bg-red-700 px-4 py-1 rounded">Iniciar sesión</a>
+            </nav>
+        </header>
+
+        <!-- Contenido central -->
+        <div class="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6">Equipos y ligas deportivas de todo el mundo</h2>
+            <p class="text-lg md:text-xl mb-6">Explora tu deporte favorito, encuentra equipos, y accede a datos
+                oficiales</p>
+            <div class="flex flex-col md:flex-row gap-4 w-full max-w-xl">
+                <input type="text" id="searchInput" placeholder="Buscar equipos..."
+                    class="p-3 rounded-md w-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                <select id="filterSport" class="p-3 rounded-md bg-gray-800 text-white w-full md:w-auto">
+                    <option value="">Todos los deportes</option>
+                    <option value="Soccer">Fútbol</option>
+                    <option value="Basketball">Baloncesto</option>
+                    <option value="American Football">Fútbol Americano</option>
+                </select>
+                <button class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md font-semibold">Buscar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel tipo Netflix (se llenará con JavaScript después) -->
+    <section class="p-6">
+        <h2 class="text-2xl font-bold mb-4">Equipos populares</h2>
+        <div id="carouselContainer" class="overflow-x-auto whitespace-nowrap scroll-smooth space-x-4 flex">
+            <!-- Tarjetas dinámicas por JavaScript -->
+            <div class="inline-block bg-gray-800 rounded-xl overflow-hidden shadow-md w-48 mx-2">
+                <img src="https://www.thesportsdb.com/images/media/team/logo/xxyyxq1421432052.png" alt="Team"
+                    class="w-full h-48 object-contain bg-black" />
+                <div class="p-3">
+                    <h3 class="text-lg font-semibold mb-2 text-center">Liverpool FC</h3>
+                    <button class="bg-red-600 hover:bg-red-700 w-full py-2 rounded text-sm">Ver más</button>
+                </div>
+            </div>
+            <!-- Más tarjetas generadas dinámicamente -->
+        </div>
+    </section>
+
+    <section class="bg-gray-900 text-white py-10">
+  <h2 class="text-2xl font-bold text-center mb-8">¿Por qué elegir SportInfo?</h2>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+      <h3 class="font-semibold text-lg mb-2">Datos oficiales</h3>
+      <p class="text-sm">Información directamente desde las bases deportivas más confiables.</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+      <h3 class="font-semibold text-lg mb-2">Deportes variados</h3>
+      <p class="text-sm">Explora equipos de fútbol, baloncesto, fútbol americano y más.</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+      <h3 class="font-semibold text-lg mb-2">Diseño intuitivo</h3>
+      <p class="text-sm">Inspirado en Netflix para una navegación moderna y cómoda.</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+      <h3 class="font-semibold text-lg mb-2">Actualización en tiempo real</h3>
+      <p class="text-sm">Consulta equipos y ligas actualizadas al instante.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-black text-white py-10 text-center">
+  <h2 class="text-xl font-bold mb-4">¿Quieres estar al día con tus equipos favoritos?</h2>
+  <p class="mb-6 text-sm">Déjanos tu correo y te enviaremos noticias deportivas.</p>
+  <form class="flex flex-col md:flex-row justify-center items-center gap-4 max-w-lg mx-auto">
+    <input type="email" placeholder="Tu correo electrónico" class="p-3 w-full md:w-2/3 rounded bg-gray-800 text-white">
+    <button class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded font-semibold">Suscribirme</button>
+  </form>
+</section>
+
+<footer class="bg-gray-950 text-gray-400 text-sm text-center py-6 mt-10">
+  <p>SportInfo © 2025 · Todos los derechos reservados</p>
+  <p class="mt-2">Diseñado para fanáticos del deporte</p>
+</footer>
+
+
 </body>
+
 </html>
