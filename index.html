@@ -7,7 +7,6 @@
     <title>SportInfo</title>
     <link rel="stylesheet" href="./css/estilos.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="https://www.thesportsdb.com/images/media/logo.png">
 </head>
 
 <body class="bg-black text-white">
@@ -17,18 +16,18 @@
         <div class="overlay absolute inset-0 z-10"></div>
 
         <!-- Navbar -->
-        <header class="absolute top-0 left-0 w-full z-20 flex justify-between items-center px-6 py-4">
-            <h1 class="text-3xl font-extrabold text-red-600">SportInfo</h1>
-            <nav class="space-x-4">
-                <a href="#" class="hover:text-red-400">Inicio</a>
-                <a href="#" class="hover:text-red-400">Ligas</a>
-                <a href="#" class="hover:text-red-400">Buscar</a>
-                <a href="#" class="bg-red-600 hover:bg-red-700 px-4 py-1 rounded">Iniciar sesión</a>
-            </nav>
-        </header>
+        <nav id="fondo-azul" class="bg-gray-900 p-4 flex justify-between items-center fixed w-full z-30 shadow-lg">
+            <a href="./index.html"><img src="./img/color_transparent.png" alt="logo-pag"></a>
+            <div class="flex space-x-4">
+                <a href="#inicio" class="hover:text-green-400">Inicio</a>
+                <a href="#carrusel" class="hover:text-green-400">Ligas</a>
+                <a id="btn-Favoritos" href="#carrusel" class="hover:text-green-400">Favoritos</a>
+                <button class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">Iniciar sesión</button>
+            </div>
+        </nav>
 
         <!-- Contenido central -->
-        <div class="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
+        <div id="inicio" class="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
             <h2 class="text-4xl md:text-6xl font-bold mb-6">Equipos y ligas deportivas de todo el mundo</h2>
             <p class="text-lg md:text-xl mb-6">Explora tu deporte favorito, encuentra equipos, y accede a datos
                 oficiales</p>
@@ -36,70 +35,120 @@
                 <input type="text" id="searchInput" placeholder="Buscar equipos..."
                     class="p-3 rounded-md w-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
                 <select id="filterSport" class="p-3 rounded-md bg-gray-800 text-white w-full md:w-auto">
-                    <option value="">Todos los deportes</option>
-                    <option value="Soccer">Fútbol</option>
-                    <option value="Basketball">Baloncesto</option>
-                    <option value="American Football">Fútbol Americano</option>
+                    <option value="">Todas las ligas</option>
+                    <option value="English Premier League">Premier League</option>
+                    <option value="Spanish La Liga">La Liga</option>
+                    <option value="Italian Serie A">Serie A</option>
+                    <option value="German Bundesliga">Bundesliga</option>
+                    <option value="French Ligue 1">Ligue 1</option>
                 </select>
-                <button class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md font-semibold">Buscar</button>
+                <button id="btn-Buscar"
+                    class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md font-semibold">Buscar</button>
             </div>
         </div>
     </section>
 
     <!-- Carrusel tipo Netflix (se llenará con JavaScript después) -->
-    <section class="p-6">
-        <h2 class="text-2xl font-bold mb-4">Equipos populares</h2>
-        <div id="carouselContainer" class="overflow-x-auto whitespace-nowrap scroll-smooth space-x-4 flex">
-            <!-- Tarjetas dinámicas por JavaScript -->
-            <div class="inline-block bg-gray-800 rounded-xl overflow-hidden shadow-md w-48 mx-2">
-                <img src="https://www.thesportsdb.com/images/media/team/logo/xxyyxq1421432052.png" alt="Team"
+    <section id="carrusel" class="p-6 relative">
+        <h2 class="text-2xl font-bold mb-4">Explora las mejores ligas del mundo</h2>
+        <div class="relative">
+            <!-- Flecha izquierda -->
+            <button id="btnIzquierda"
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black text-white px-3 py-2 rounded-full">
+                &#10094;
+            </button>
+            <div id="carrusel-de-equipos"
+                class="flex overflow-x-auto scroll-smooth space-x-4 p-4 snap-x snap-mandatory scrollbar-hide"">
+                <!-- Tarjetas se insertarán dinámicamente -->
+
+                <!-- Tarjetas dinámicas por JavaScript 
+            <div class=" inline-block bg-gray-800 rounded-xl overflow-hidden shadow-md w-48 mx-2">
+                <img src="https://r2.thesportsdb.com/images/media/team/badge/kfaher1737969724.png" alt="Team"
                     class="w-full h-48 object-contain bg-black" />
                 <div class="p-3">
                     <h3 class="text-lg font-semibold mb-2 text-center">Liverpool FC</h3>
                     <button class="bg-red-600 hover:bg-red-700 w-full py-2 rounded text-sm">Ver más</button>
                 </div>
             </div>
-            <!-- Más tarjetas generadas dinámicamente -->
+            Más tarjetas generadas dinámicamente
+            <div class="inline-block bg-gray-800 rounded-xl overflow-hidden shadow-md w-48 mx-2">
+                <img src="https://r2.thesportsdb.com/images/media/team/badge/kfaher1737969724.png" alt="Team"
+                    class="w-full h-48 object-contain bg-black" />
+                <div class="p-3">
+                    <h3 class="text-lg font-semibold mb-2 text-center">Liverpool FC</h3>
+                    <button class="bg-red-600 hover:bg-red-700 w-full py-2 rounded text-sm">Ver más</button>
+                </div>
+            </div>-->
+
+
+        </div>
+        <button id="btnDerecha"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black text-white px-3 py-2 rounded-full">
+            &#10095;
+        </button>
         </div>
     </section>
 
-    <section class="bg-gray-900 text-white py-10">
-  <h2 class="text-2xl font-bold text-center mb-8">¿Por qué elegir SportInfo?</h2>
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
-    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
-      <h3 class="font-semibold text-lg mb-2">Datos oficiales</h3>
-      <p class="text-sm">Información directamente desde las bases deportivas más confiables.</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
-      <h3 class="font-semibold text-lg mb-2">Deportes variados</h3>
-      <p class="text-sm">Explora equipos de fútbol, baloncesto, fútbol americano y más.</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
-      <h3 class="font-semibold text-lg mb-2">Diseño intuitivo</h3>
-      <p class="text-sm">Inspirado en Netflix para una navegación moderna y cómoda.</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
-      <h3 class="font-semibold text-lg mb-2">Actualización en tiempo real</h3>
-      <p class="text-sm">Consulta equipos y ligas actualizadas al instante.</p>
-    </div>
-  </div>
-</section>
+    <section id="fondo-azul" class="bg-gray-900 text-white py-10">
+        <h2 class="text-2xl font-bold text-center mb-8">¿Por qué elegir SportInfo?</h2>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+            <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+                <h3 class="font-semibold text-lg mb-2">Datos oficiales</h3>
+                <p class="text-sm">Información directamente desde las bases deportivas más confiables.</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+                <h3 class="font-semibold text-lg mb-2">Deportes variados</h3>
+                <p class="text-sm">Explora equipos de fútbol, baloncesto, fútbol americano y más.</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+                <h3 class="font-semibold text-lg mb-2">Diseño intuitivo</h3>
+                <p class="text-sm">Inspirado en Netflix para una navegación moderna y cómoda.</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl shadow-md text-center">
+                <h3 class="font-semibold text-lg mb-2">Actualización en tiempo real</h3>
+                <p class="text-sm">Consulta equipos y ligas actualizadas al instante.</p>
+            </div>
+        </div>
+    </section>
 
-<section class="bg-black text-white py-10 text-center">
-  <h2 class="text-xl font-bold mb-4">¿Quieres estar al día con tus equipos favoritos?</h2>
-  <p class="mb-6 text-sm">Déjanos tu correo y te enviaremos noticias deportivas.</p>
-  <form class="flex flex-col md:flex-row justify-center items-center gap-4 max-w-lg mx-auto">
-    <input type="email" placeholder="Tu correo electrónico" class="p-3 w-full md:w-2/3 rounded bg-gray-800 text-white">
-    <button class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded font-semibold">Suscribirme</button>
-  </form>
-</section>
+    <section class="bg-black text-white py-10 text-center">
+        <h2 class="text-xl font-bold mb-4">¿Quieres estar al día con tus equipos favoritos?</h2>
+        <p class="mb-6 text-sm">Déjanos tu correo y te enviaremos noticias deportivas.</p>
+        <form class="flex flex-col md:flex-row justify-center items-center gap-4 max-w-lg mx-auto">
+            <input type="email" placeholder="Tu correo electrónico"
+                class="p-3 w-full md:w-2/3 rounded bg-gray-800 text-white">
+            <button class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded font-semibold">Suscribirme</button>
+        </form>
+    </section>
 
-<footer class="bg-gray-950 text-gray-400 text-sm text-center py-6 mt-10">
-  <p>SportInfo © 2025 · Todos los derechos reservados</p>
-  <p class="mt-2">Diseñado para fanáticos del deporte</p>
-</footer>
+    <footer id="fondo-azul" class="bg-gray-950 text-gray-400 text-sm text-center py-6 mt-10">
+        <p>SportInfo © 2025 · Todos los derechos reservados</p>
+        <p class="mt-2">Diseñado para fanáticos del deporte</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modalEquipo" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div id="fondo-azul" class="bg-white rounded-lg p-6 w-96">
+            <img id="modalLogo" src="" class="w-24 mx-auto mb-4" />
+            <h2 id="modalNombre" class="text-xl font-bold text-center mb-2"></h2>
+            <p id="modalLiga" class="text-center text-sm mb-1"></p>
+            <p id="modalPais" class="text-center text-sm mb-1"></p>
+            <p id="modalEstadio" class="text-center text-sm mb-1"></p>
+            <p id="modalFundacion" class="text-center text-sm mb-1"></p>
+            <p id="modalDescripcion" class="text-sm mt-2 text-justify"></p>
+            <button id="cerrarModal"
+                class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded block mx-auto">
+                Cerrar
+            </button>
+
+        </div>
+    </div>
 
 
+
+
+
+    <script src="./js/main2.js"></script>
 </body>
 
 </html>

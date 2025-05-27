@@ -4,5 +4,27 @@
 }
 
 #fondo {
-    background-image: url('../img/deportes.png');
+    background-image: url('../img/futbol.jpg');
 }
+
+nav img {
+    width: 150px;
+    height: auto;
+}
+
+/* Oculta scroll horizontal solo visualmente */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#fondo-azul {
+    background-color: #080c22;
+}
+
+
+
+

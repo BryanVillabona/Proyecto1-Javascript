@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars Explorer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-black p-4 shadow-md">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-yellow-400">Star Wars Explorer</h1>
+        <nav>
+          <ul class="flex space-x-4">
+            <li><a href="#" class="hover:text-yellow-300">Personajes</a></li>
+            <li><a href="#" class="hover:text-yellow-300">Planetas</a></li>
+            <li><a href="#" class="hover:text-yellow-300">Naves</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Buscador -->
+    <section class="container mx-auto my-6 px-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar personaje..."
+          class="w-full sm:w-1/2 px-4 py-2 rounded-md text-black"
+        />
+        <button
+          onclick="buscarPersonajes(true)"
+          class="bg-yellow-400 text-black px-4 py-2 rounded-md hover:bg-yellow-300"
+        >
+          Buscar
+        </button>
+      </div>
+    </section>
+
+    <!-- Resultados -->
+    <main class="container mx-auto px-4 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" id="resultados">
+      <!-- Tarjetas JS -->
+    </main>
+
+    <!-- Paginación -->
+    <div class="container mx-auto flex justify-center gap-4 my-8" id="paginacion">
+      <button
+        id="prevBtn"
+        onclick="cambiarPagina(-1)"
+        class="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-400 disabled:opacity-40"
+        disabled
+      >
+        Anterior
+      </button>
+      <button
+        id="nextBtn"
+        onclick="cambiarPagina(1)"
+        class="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-400 disabled:opacity-40"
+        disabled
+      >
+        Siguiente
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black mt-12 py-4 text-center text-sm text-gray-400">
+      © 2025 Star Wars Explorer - Proyecto educativo
+    </footer>
+
+    <!-- Script -->
+    <script>
+      let currentPage = 1;
+      let currentSearch = '';
+      let nextPageUrl = null;
+      let prevPageUrl = null;
+
+      async function buscarPersonajes(reset = false) {
+        const input = document.getElementById('searchInput');
+        if (reset) {
+          currentSearch = input.value.trim();
+          currentPage = 1;
+        }
+
+        const resultados = document.getElementById('resultados');
+        resultados.innerHTML = '<p class="col-span-3 text-center text-yellow-300">Cargando...</p>';
+
+        let url = `https://swapi.py4e.com/api/people/?page=\${currentPage}\`;
+        if (currentSearch) url += \`&search=\${currentSearch}`;
+
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+
+          resultados.innerHTML = '';
+          if (data.results.length === 0) {
+            resultados.innerHTML = '<p class="col-span-3 text-center text-red-400">No se encontraron resultados.</p>';
+          }
+
+          data.results.forEach((personaje) => {
+            const card = document.createElement('div');
+            card.className = 'bg-gray-800 p-4 rounded-xl shadow-md';
+
+            card.innerHTML = `
+              <h2 class="text-xl font-semibold text-yellow-300 mb-2">\${personaje.name}</h2>
+              <p><strong>Altura:</strong> \${personaje.height} cm</p>
+              <p><strong>Género:</strong> \${personaje.gender}</p>
+              <p><strong>Año nacimiento:</strong> \${personaje.birth_year}</p>
+            `;
+
+            resultados.appendChild(card);
+          });
+
+          // Actualiza botones de paginación
+          nextPageUrl = data.next;
+          prevPageUrl = data.previous;
+          document.getElementById('nextBtn').disabled = !data.next;
+          document.getElementById('prevBtn').disabled = !data.previous;
+        } catch (error) {
+          resultados.innerHTML = '<p class="text-red-400 col-span-3">Ocurrió un error al buscar.</p>';
+        }
+      }
+
+      function cambiarPagina(dir) {
+        currentPage += dir;
+        buscarPersonajes();
+      }
+
+      // Carga inicial
+      window.onload = () => {
+        buscarPersonajes(true);
+      };
+    </script>
+  </body>
+</html>
